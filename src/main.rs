@@ -63,7 +63,6 @@ fn main() -> std::io::Result<()> {
     terminal.backend_mut().execute(LeaveAlternateScreen)?;
     terminal.backend_mut().execute(DisableMouseCapture)?;
     terminal.backend_mut().execute(ResetColor)?;
-    terminal.backend_mut().execute(RestorePosition)?;
     terminal.show_cursor()?;
     Ok(())
 }
