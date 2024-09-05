@@ -247,7 +247,7 @@ impl RunningCommand {
     fn handle_passthrough_key_event(&mut self, key: &KeyEvent) {
         let input_bytes = match key.code {
             KeyCode::Char(ch) => {
-                let mut send = vec![ch as u8];
+                let mut send = String::from(ch).as_bytes().to_owned();
                 let upper = ch.to_ascii_uppercase();
                 if key.modifiers == KeyModifiers::CONTROL {
                     match upper {
@@ -264,7 +264,7 @@ impl RunningCommand {
                             let ascii_to_send = ascii_val - 64;
                             send = vec![ascii_to_send];
                         }
-                        _ => {}
+                        _ => return,
                     }
                 }
                 send
